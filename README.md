@@ -2,7 +2,7 @@
 
 1. `docker-compose build`
 2. `docker-compose up`
-3. Navigate to [http://127.0.0.1:8180](http://127.0.0.1:8180) for the Parity IU.
+3. Navigate to [http://127.0.0.1:8180](http://127.0.0.1:8180) for the Parity UI.
 Yoy will need to copy the authentication token from the output of the previous command to log in.
 4. Navigate to [http://127.0.0.1:3001](http://127.0.0.1:3001) for the ethstats dashboard.
 
