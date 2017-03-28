@@ -1,30 +1,33 @@
 version: '2'
 services:
   parity:
-    image: ethcore/parity
+    image: ethcore/parity:stable
     command:
       --chain /dev.json
       --jsonrpc-interface all
       --jsonrpc-hosts all
       --dapps-port 8081
+      --dapps-interface 0.0.0.0
       --dapps-hosts all
       --dapps-cors all
       --ui-interface 0.0.0.0
-      --dapps-interface 0.0.0.0
-      --ui-no-validation ui
+      --ui-no-validation
+      ui
     ports:
-      - 8081:8081
       - 8180:8180
       - 8545:8545
     volumes:
+      - parity:/root/.local/share/io.parity.ethereum/
       - ./parity/dev.json:/dev.json:ro
   monitor:
-    build: ./monitor
+    image: buythewhale/ethstats_monitor
     volumes:
       - ./monitor/app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
   dashboard:
-    build: ./dashboard
+    image: buythewhale/ethstats
     volumes:
       - ./dashboard/ws_secret.json:/eth-netstats/ws_secret.json:ro
     ports:
       - 3001:3000
+volumes:
+  parity:
